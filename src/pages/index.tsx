@@ -2,9 +2,16 @@ import { useState } from "react";
 import viteLogo from "/vite.svg";
 import "./index.css";
 import { DatePicker } from "antd";
+import { useGet } from "../hooks";
+
+interface get {
+  Hello: string;
+}
 
 function Homepage() {
   const [count, setCount] = useState(0);
+
+  const { data, refetch } = useGet<get>("");
 
   return (
     <>
@@ -14,9 +21,15 @@ function Homepage() {
         </a>
       </div>
       <DatePicker />
+      <p>{data?.Hello}</p>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button
+          onClick={() => {
+            setCount((count) => count + 1);
+            refetch();
+          }}
+        >
           count is {count}
         </button>
         <p>
