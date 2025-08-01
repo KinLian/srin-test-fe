@@ -1,13 +1,21 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 
-import Homepage from "./pages";
+import HomePage from "./pages/main";
+import { PhonePage, PhoneDetailPage, PhoneFormPage } from "./pages/phone";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Homepage />} />
-        <Route path="about" element={<Homepage />} />
+        <Route index element={<HomePage />} />
+        <Route path="phone">
+          <Route index element={<PhonePage />} />
+          <Route path=":id">
+            <Route index element={<PhoneDetailPage />} />
+            <Route path="edit" element={<PhoneFormPage />} />
+          </Route>
+          <Route path="add" element={<PhoneFormPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
