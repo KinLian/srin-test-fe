@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-interface useSendProps extends Request {
-  url: string;
+type Method = "POST" | "PUT" | "DELETE";
+interface RequestProps extends Omit<Partial<Request>, "body" | "method"> {
   onSuccess: (data: unknown) => void;
-  onFailed: (data: unknown) => void;
+  onFailed?: (data: unknown) => void;
 }
 
 const INIT_CONDITIONS = {
@@ -12,10 +12,13 @@ const INIT_CONDITIONS = {
   isFailed: false,
 };
 
-function useSend({ url, onSuccess, onFailed, ...props }: useSendProps) {
+function useSend(url: string, method: Method) {
   const [conditions, setConditions] = useState(INIT_CONDITIONS);
 
-  function sendData() {
+  function sendData(
+    body: unknown,
+    { onSuccess, onFailed, ...props }: RequestProps
+  ) {
     setConditions((prev) => ({
       ...prev,
       isLoading: true,
@@ -23,7 +26,14 @@ function useSend({ url, onSuccess, onFailed, ...props }: useSendProps) {
       isFailed: false,
     }));
 
-    fetch(`${process.env.REACT_APP_BE_URL_BASE_LOCAL}${url}`, props)
+    fetch(`${process.env.REACT_APP_BE_URL_BASE_LOCAL}${url}`, {
+      body: JSON.stringify(body),
+      method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      ...props,
+    })
       .then((res) => res.json())
       .then((data) => {
         setConditions((prev) => ({
@@ -41,7 +51,7 @@ function useSend({ url, onSuccess, onFailed, ...props }: useSendProps) {
           isSuccess: false,
           isFailed: true,
         }));
-        onFailed(e);
+        if (onFailed) onFailed(e);
       });
   }
 
