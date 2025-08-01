@@ -1,6 +1,7 @@
 import { useState } from "react";
 import viteLogo from "/vite.svg";
 import "./index.css";
+import { DatePicker } from "antd";
 
 function Homepage() {
   const [count, setCount] = useState(0);
@@ -12,6 +13,7 @@ function Homepage() {
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
       </div>
+      <DatePicker />
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
