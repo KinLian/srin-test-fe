@@ -12,13 +12,13 @@ function useGet<T>(url: string) {
       .catch((e) => console.warn(e));
   }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     let getData = true;
     if (getData) fetchData();
     return () => {
       getData = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
   return { data, refetch: fetchData };

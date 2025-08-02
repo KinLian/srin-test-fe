@@ -43,9 +43,8 @@ function PhonePage() {
   );
 
   const columnsWithSources = [...columns, ...convertedActions];
-
   return (
-    <MainLayout gap="2rem" isLoading={Boolean(data)}>
+    <MainLayout gap="2rem" isLoading={Boolean(!data)}>
       <Title>Phones</Title>
       <Table dataSource={convertedDatas} columns={columnsWithSources} />
     </MainLayout>

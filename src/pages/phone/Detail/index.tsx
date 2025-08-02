@@ -1,11 +1,11 @@
-import Title from "antd/es/typography/Title";
 import { MainLayout } from "../../../components/layout";
 import { useGet } from "../../../hooks";
 import type { PhoneType } from "../../../types";
 import { urlSinglePhone } from "../../../const/apiUrl";
 import { useNavigate, useParams } from "react-router";
 import { TextWithDesc } from "../../../components/content";
-import { Button, Col, Row } from "antd";
+import { Button, Col, Row, Typography } from "antd";
+const { Title } = Typography;
 
 const columnTitles: string[] = [
   "Price",
@@ -24,7 +24,7 @@ function PhoneDetailPage() {
   const { data } = useGet<PhoneType>(urlSinglePhone(id));
 
   return (
-    <MainLayout gap="1rem" isLoading={Boolean(data)}>
+    <MainLayout gap="1rem" isLoading={Boolean(!data)}>
       <Title style={{ textAlign: "center" }}>{data?.model}</Title>
       <Button
         onClick={() => navigate("edit")}

@@ -1,12 +1,12 @@
-import { Alert, Button, Col, Row } from "antd";
+import { Alert, Button, Col, Row, Typography } from "antd";
 import { MainLayout } from "../../../components/layout";
 import { useGet, useSend } from "../../../hooks";
 import { urlPhone, urlSinglePhone } from "../../../const/apiUrl";
 import { InputWithTitle } from "../../../components/content";
-import Title from "antd/es/typography/Title";
 import { useMemo, useRef, useState } from "react";
 import type { PhoneType } from "../../../types";
 import { useNavigate, useParams } from "react-router";
+const { Title } = Typography;
 
 const inputTitles: string[] = [
   "Model",
@@ -93,7 +93,7 @@ function PhoneFormPage() {
   }, [isLoading, isSuccess, isFailed, isInvalid]);
 
   return (
-    <MainLayout gap="1rem" isLoading={isDataAvailable}>
+    <MainLayout gap="1rem" isLoading={!isDataAvailable}>
       {isDataAvailable && (
         <>
           <Title style={{ textAlign: "center" }}>
