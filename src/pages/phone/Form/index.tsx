@@ -99,7 +99,7 @@ function PhoneFormPage() {
             {isEditPage ? "Edit" : "Add"} Phone
           </Title>
           {status}
-          <form ref={formRef}>
+          <form ref={formRef} >
             <Row gutter={[24, 24]}>
               {inputTitles.map((it: string, idx) => (
                 <Col key={idx} span={12}>
@@ -113,10 +113,11 @@ function PhoneFormPage() {
               ))}
             </Row>
             <Button
+              size="large"
               variant="solid"
               color="blue"
               loading={isLoading}
-              style={{ marginTop: "2rem" }}
+              style={{ marginTop: "2rem", width: "100%" }}
               onClick={sendData}
             >
               Submit

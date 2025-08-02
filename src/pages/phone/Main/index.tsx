@@ -44,9 +44,23 @@ function PhonePage() {
 
   const columnsWithSources = [...columns, ...convertedActions];
   return (
-    <MainLayout gap="2rem" isLoading={Boolean(!data)}>
+    <MainLayout
+      style={{
+        backgroundSize: "cover",
+        backgroundColor: "rgba(0, 0, 0, 0.2)",
+        backgroundImage:
+          "url('https://cdn.thewirecutter.com/wp-content/media/2025/02/BEST-ANDROID-PHONES-2048px-samsung25ultra-hero.jpg?auto=webp&quality=75&width=1024)'",
+        backgroundBlendMode: "overlay",
+      }}
+      gap="2rem"
+      isLoading={Boolean(!data)}
+    >
       <Title>Phones</Title>
-      <Table dataSource={convertedDatas} columns={columnsWithSources} />
+      <Table
+        dataSource={convertedDatas}
+        columns={columnsWithSources}
+        style={{ background: "white", borderRadius: "0.5rem", opacity: "0.95" }}
+      />
     </MainLayout>
   );
 }

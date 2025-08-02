@@ -23,6 +23,13 @@ function HomePage() {
           hoverable
           color="default"
           style={{
+            fontWeight: "600",
+            color: "white",
+            backgroundSize: "cover",
+            backgroundColor: "rgba(0, 0, 0, 0.4)",
+            backgroundImage:
+              "url('https://cdn.thewirecutter.com/wp-content/media/2025/02/BEST-ANDROID-PHONES-2048px-samsung25ultra-hero.jpg?auto=webp&quality=75&width=1024')",
+            backgroundBlendMode: "overlay",
             fontSize: "2rem",
             paddingInline: "4rem",
             paddingBlock: "2rem",

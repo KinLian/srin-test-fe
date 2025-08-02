@@ -34,7 +34,7 @@ function MainLayout({
 }: MainLayoutProps) {
   return (
     <Flex style={defaultStyle}>
-      <Flex vertical={vertical} {...props} style={{ ...style, ...innerStyle }}>
+      <Flex vertical={vertical} {...props} style={{ ...innerStyle, ...style }}>
         {!isLoading ? (
           children
         ) : (
