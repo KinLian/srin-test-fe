@@ -1,7 +1,7 @@
-import { Card } from "antd";
+import { Card, Typography } from "antd";
 import { MainLayout } from "../../components/layout";
 import { useNavigate } from "react-router";
-import Title from "antd/es/typography/Title";
+const { Title } = Typography;
 
 function HomePage() {
   const navigate = useNavigate();

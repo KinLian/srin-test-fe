@@ -1,11 +1,16 @@
-import { Table, type TableColumnsType, type TableColumnType } from "antd";
+import {
+  Table,
+  Typography,
+  type TableColumnsType,
+  type TableColumnType,
+} from "antd";
 import { MainLayout } from "../../../components/layout";
 import { urlPhone } from "../../../const/apiUrl";
 import { useGet } from "../../../hooks";
-import Title from "antd/es/typography/Title";
 import type { PhoneType } from "../../../types";
 import type { ColumnsType } from "antd/es/table/interface";
 import { TableActions } from "./modules";
+const { Title } = Typography;
 
 const columnTitles = ["Model", "Price", "OS"];
 
