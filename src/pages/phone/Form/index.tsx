@@ -61,7 +61,6 @@ function PhoneFormPage() {
       for (const [key, val] of formData.entries()) {
         json[key] = val;
       }
-
       const isInvalidForm = validate(json);
       if (!isInvalidForm) {
         if (isEditPage) updatePhone(urlSinglePhone(id), json, { onSuccess });
@@ -102,8 +101,8 @@ function PhoneFormPage() {
           {status}
           <form ref={formRef}>
             <Row gutter={[24, 24]}>
-              {inputTitles.map((it: string) => (
-                <Col span={12}>
+              {inputTitles.map((it: string, idx) => (
+                <Col key={idx} span={12}>
                   <InputWithTitle
                     title={it}
                     type="text"

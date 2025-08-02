@@ -24,7 +24,7 @@ const mockUseNavigate = jest.fn();
 // ---------------------------- Datas ----------------------------------
 const USE_SEND_RESPONSE = {
   call: (url: string, body: unknown, { onSuccess }: RequestProps) =>
-    onSuccess(body),
+    onSuccess({ url, body }),
 };
 
 describe("Table Actions", () => {

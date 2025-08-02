@@ -7,5 +7,6 @@ export default {
     "\\.(css|less|sass|scss)$": "identity-obj-proxy", // The mock for style related files
     "^@/(.*)$": "<rootDir>/src/$1", // [optional] Are you using aliases?
   },
-  coveragePathIgnorePatterns: ["index.ts"],
+  collectCoverageFrom: ["src/**/*.tsx"],
+  coveragePathIgnorePatterns: ["App.tsx", "main.tsx"],
 };
