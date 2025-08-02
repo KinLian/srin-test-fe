@@ -7,19 +7,7 @@ import type { PhoneType } from "../../../types";
 import type { ColumnsType } from "antd/es/table/interface";
 import { TableActions } from "./modules";
 
-const columnTitles = [
-  "Model",
-  "Price",
-  // "Rating",
-  // "SIM",
-  // "Processor",
-  // "RAM",
-  // "Battery",
-  // "Display",
-  // "Camera",
-  // "Card",
-  "OS",
-];
+const columnTitles = ["Model", "Price", "OS"];
 
 const columns: TableColumnsType = columnTitles.map((it: string) => ({
   title: it,
@@ -28,7 +16,7 @@ const columns: TableColumnsType = columnTitles.map((it: string) => ({
 }));
 const actionColumns: TableColumnsType = [
   {
-    title: "Hello",
+    title: "Actions",
     width: 90,
   },
 ];
@@ -52,7 +40,7 @@ function PhonePage() {
   const columnsWithSources = [...columns, ...convertedActions];
 
   return (
-    <MainLayout gap="2rem">
+    <MainLayout gap="2rem" isLoading={Boolean(data)}>
       <Title>Phones</Title>
       <Table dataSource={convertedDatas} columns={columnsWithSources} />
     </MainLayout>
