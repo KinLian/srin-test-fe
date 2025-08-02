@@ -1,7 +1,7 @@
 import { Flex, Typography } from "antd";
 const { Title, Text } = Typography;
 
-interface TextWithDescProps {
+export interface TextWithDescProps {
   title: string;
   desc?: string;
 }

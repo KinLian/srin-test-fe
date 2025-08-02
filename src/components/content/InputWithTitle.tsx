@@ -1,7 +1,7 @@
 import { Flex, Input, type InputProps, Typography } from "antd";
 const { Text } = Typography;
 
-interface InputWithTitleProps extends InputProps {
+export interface InputWithTitleProps extends InputProps {
   title: string;
 }
 

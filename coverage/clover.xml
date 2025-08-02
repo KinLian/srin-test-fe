@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1754119546452" clover="3.2.0">
+  <project timestamp="1754119546453" name="All files">
+    <metrics statements="5" coveredstatements="4" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="1" elements="11" coveredelements="9" complexity="0" loc="5" ncloc="5" packages="1" files="3" classes="3"/>
+    <file name="InputWithTitle.tsx" path="E:\Programming\Project (Combined)\SRIN\srin-test-fe\src\components\content\InputWithTitle.tsx">
+      <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="9" count="0" type="stmt"/>
+    </file>
+    <file name="TextWithDesc.tsx" path="E:\Programming\Project (Combined)\SRIN\srin-test-fe\src\components\content\TextWithDesc.tsx">
+      <metrics statements="3" coveredstatements="3" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="10" count="3" type="cond" truecount="4" falsecount="0"/>
+      <line num="11" count="3" type="stmt"/>
+    </file>
+    <file name="index.ts" path="E:\Programming\Project (Combined)\SRIN\srin-test-fe\src\components\content\index.ts">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+    </file>
+  </project>
+</coverage>
