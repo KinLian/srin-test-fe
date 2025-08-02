@@ -4,7 +4,7 @@ import { useGet, useSend } from "../../../hooks";
 import { urlPhone, urlSinglePhone } from "../../../const/apiUrl";
 import { InputWithTitle } from "../../../components/content";
 import Title from "antd/es/typography/Title";
-import { useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { PhoneType } from "../../../types";
 import { useNavigate, useParams } from "react-router";
 
@@ -25,6 +25,7 @@ function PhoneFormPage() {
   const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement | null>(null);
 
+  const [isInvalid, setIsInvalid] = useState(false);
   const isEditPage = !!id;
 
   const { data } = useGet<PhoneType>(urlSinglePhone(id));
@@ -50,8 +51,12 @@ function PhoneFormPage() {
         json[key] = val;
       }
 
-      if (isEditPage) updatePhone(json, { onSuccess });
-      else addPhone(json, { onSuccess });
+      if (json["model"] === "") return setIsInvalid(true);
+      else {
+        setIsInvalid(false);
+        if (isEditPage) updatePhone(json, { onSuccess });
+        else addPhone(json, { onSuccess });
+      }
     }
   }
 
@@ -67,12 +72,14 @@ function PhoneFormPage() {
 
   const isDataAvailable = Boolean((isEditPage && data) || !isEditPage);
 
-  const status = () => {
+  const status = useMemo(() => {
     if (isLoading) return <Alert type="info" message="Loading" />;
     else if (isSuccess) return <Alert type="success" message="Success" />;
     else if (isFailed) return <Alert type="error" message="Failed" />;
+    else if (isInvalid)
+      return <Alert type="error" message="Model should not be empty" />;
     else return <Alert type="info" message="Not yet to be send" />;
-  };
+  }, [isLoading, isSuccess, isFailed, isInvalid]);
 
   return (
     <MainLayout gap="1rem" isLoading={isDataAvailable}>
@@ -81,7 +88,7 @@ function PhoneFormPage() {
           <Title style={{ textAlign: "center" }}>
             {isEditPage ? "Edit" : "Add"} Phone
           </Title>
-          {status()}
+          {status}
           <form ref={formRef}>
             <Row gutter={[24, 24]}>
               {inputTitles.map((it: string) => (
@@ -96,6 +103,8 @@ function PhoneFormPage() {
               ))}
             </Row>
             <Button
+              variant="solid"
+              color="blue"
               loading={isLoading}
               style={{ marginTop: "2rem" }}
               onClick={sendData}
