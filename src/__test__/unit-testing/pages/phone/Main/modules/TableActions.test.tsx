@@ -13,7 +13,7 @@ jest.mock("react-router", () => ({
 // -------------------------- Variables --------------------------------
 const mockUseNavigate = jest.fn();
 
-describe("Main Layout", () => {
+describe("Table Actions", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
