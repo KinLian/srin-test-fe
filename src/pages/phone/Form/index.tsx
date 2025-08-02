@@ -21,13 +21,16 @@ const inputTitles: string[] = [
 ];
 
 function PhoneFormPage() {
+  // External Hooks
   const { id = "" } = useParams();
   const navigate = useNavigate();
-  const formRef = useRef<HTMLFormElement | null>(null);
 
+  // Component Hooks
+  const formRef = useRef<HTMLFormElement | null>(null);
   const [isInvalid, setIsInvalid] = useState(false);
   const isEditPage = !!id;
 
+  // Custom Hooks
   const { data } = useGet<PhoneType>(urlSinglePhone(id));
   const {
     call: addPhone,
@@ -42,6 +45,7 @@ function PhoneFormPage() {
     isFailed: isFailedUpdate,
   } = useSend(urlSinglePhone(id ?? ""), "PUT");
 
+  //Functions
   function sendData() {
     if (formRef && formRef.current) {
       const formData = new FormData(formRef.current);
@@ -66,12 +70,13 @@ function PhoneFormPage() {
     }, 3000);
   }
 
+  // Constant Vars
   const isLoading = isLoadingAdd || isLoadingUpdate;
   const isSuccess = isSuccessAdd || isSuccessUpdate;
   const isFailed = isFailedAdd || isFailedUpdate;
-
   const isDataAvailable = Boolean((isEditPage && data) || !isEditPage);
 
+  // Components
   const status = useMemo(() => {
     if (isLoading) return <Alert type="info" message="Loading" />;
     else if (isSuccess) return <Alert type="success" message="Success" />;
