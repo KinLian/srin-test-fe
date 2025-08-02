@@ -2,7 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { colors } from "../../styles";
 import { Flex, Spin, type FlexProps } from "antd";
 
-interface MainLayoutProps extends FlexProps {
+export interface MainLayoutProps extends FlexProps {
   style?: Omit<CSSProperties, "padding">;
   isLoading?: boolean;
   children: ReactNode;
@@ -29,13 +29,17 @@ function MainLayout({
   children,
   style,
   vertical = true,
-  isLoading = true,
+  isLoading = false,
   ...props
 }: MainLayoutProps) {
   return (
     <Flex style={defaultStyle}>
       <Flex vertical={vertical} {...props} style={{ ...style, ...innerStyle }}>
-        {isLoading ? children : <Spin fullscreen size="large" />}
+        {!isLoading ? (
+          children
+        ) : (
+          <Spin data-testid="spinner" fullscreen size="large" />
+        )}
       </Flex>
     </Flex>
   );
