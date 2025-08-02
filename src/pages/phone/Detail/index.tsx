@@ -37,8 +37,8 @@ function PhoneDetailPage() {
         Edit
       </Button>
       <Row gutter={[24, 24]} style={{ padding: "2rem" }}>
-        {columnTitles.map((it: string) => (
-          <Col span={12}>
+        {columnTitles.map((it: string, idx) => (
+          <Col key={idx} span={12}>
             <TextWithDesc
               title={it}
               desc={data?.[it.toLowerCase() as keyof PhoneType]}

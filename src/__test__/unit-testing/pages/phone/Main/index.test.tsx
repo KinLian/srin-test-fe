@@ -56,7 +56,7 @@ describe("Phone Main", () => {
   }
 
   it("should render component with datas", async () => {
-    await renderComponent({ data: USE_GET_RESPONSE["data"] });
+    await renderComponent(USE_GET_RESPONSE);
 
     USE_GET_RESPONSE["data"].forEach((phone) => {
       const phoneOS = screen.getByText(phone["os"]);
