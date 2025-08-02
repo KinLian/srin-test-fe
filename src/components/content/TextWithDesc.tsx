@@ -7,10 +7,11 @@ interface TextWithDescProps {
 }
 
 function TextWithDesc({ title, desc }: TextWithDescProps) {
+  const formattedDesc = desc === null || desc === "" ? "-" : desc;
   return (
     <Flex vertical gap="0.5">
       <Title level={5}>{title}</Title>
-      <Text>{desc ?? "-"}</Text>
+      <Text>{formattedDesc}</Text>
     </Flex>
   );
 }
