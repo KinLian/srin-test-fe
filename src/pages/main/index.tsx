@@ -18,11 +18,16 @@ function HomePage() {
         <Title>SRIN Take Home Test</Title>
         <Title level={3}>Electronics Catalogue</Title>
       </div>
-      <div style={{ marginTop: "4rem" }}>
+      <div style={{ marginTop: "4rem", justifyItems: "center" }}>
         <Card
           hoverable
           color="default"
-          style={{ fontSize: "2rem", paddingInline: "4rem", paddingBlock: "2rem", width: "fit-content" }}
+          style={{
+            fontSize: "2rem",
+            paddingInline: "4rem",
+            paddingBlock: "2rem",
+            width: "fit-content",
+          }}
           onClick={() => navigate("/phone")}
         >
           Phones
