@@ -2,7 +2,7 @@ import { Button, Flex } from "antd";
 import type { PhoneType } from "../../../../types";
 import { useNavigate } from "react-router";
 
-interface TableActionsProps {
+export interface TableActionsProps {
   value: PhoneType;
 }
 
