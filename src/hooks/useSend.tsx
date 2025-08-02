@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 type Method = "POST" | "PUT" | "DELETE";
-interface RequestProps extends Omit<Partial<Request>, "body" | "method"> {
+export interface RequestProps extends Omit<Partial<Request>, "body" | "method"> {
   onSuccess: (data: unknown) => void;
   onFailed?: (data: unknown) => void;
 }
@@ -12,10 +12,11 @@ const INIT_CONDITIONS = {
   isFailed: false,
 };
 
-function useSend(url: string, method: Method) {
+function useSend(method: Method) {
   const [conditions, setConditions] = useState(INIT_CONDITIONS);
 
   function sendData(
+    url: string,
     body: unknown,
     { onSuccess, onFailed, ...props }: RequestProps
   ) {

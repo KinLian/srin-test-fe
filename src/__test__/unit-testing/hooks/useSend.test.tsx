@@ -28,17 +28,17 @@ describe("useSend", () => {
   it("should able to call API (success)", async () => {
     global.fetch = jest.fn().mockResolvedValue(RESULT_FETCH_SUCCESS);
 
-    const { result } = renderHook(() => useSend("phone", "PUT"));
+    const { result } = renderHook(() => useSend("PUT"));
     const { call } = result.current;
-    call(DUMMY_REQUEST_DATA, { onSuccess: mockOnSuccess, onFailed: mockOnFailed });
+    call("phone", DUMMY_REQUEST_DATA, { onSuccess: mockOnSuccess, onFailed: mockOnFailed });
   });
 
   it("should able to call API (failed)", async () => {
     global.fetch = jest.fn().mockResolvedValue(RESULT_FETCH_FAILED);
 
-    const { result } = renderHook(() => useSend("phone", "POST"));
+    const { result } = renderHook(() => useSend("POST"));
     const { call } = result.current;
-    call(DUMMY_REQUEST_DATA, { onSuccess: mockOnSuccess, onFailed: mockOnFailed });
-    call(DUMMY_REQUEST_DATA, { onSuccess: mockOnSuccess });
+    call("phone", DUMMY_REQUEST_DATA, { onSuccess: mockOnSuccess, onFailed: mockOnFailed });
+    call("phone", DUMMY_REQUEST_DATA, { onSuccess: mockOnSuccess });
   });
 });

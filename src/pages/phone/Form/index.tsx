@@ -37,13 +37,13 @@ function PhoneFormPage() {
     isLoading: isLoadingAdd,
     isSuccess: isSuccessAdd,
     isFailed: isFailedAdd,
-  } = useSend(urlPhone, "POST");
+  } = useSend("POST");
   const {
     call: updatePhone,
     isLoading: isLoadingUpdate,
     isSuccess: isSuccessUpdate,
     isFailed: isFailedUpdate,
-  } = useSend(urlSinglePhone(id ?? ""), "PUT");
+  } = useSend("PUT");
 
   //Functions
   function validate(phone: Omit<PhoneType, "id">) {
@@ -64,8 +64,8 @@ function PhoneFormPage() {
 
       const isInvalidForm = validate(json);
       if (!isInvalidForm) {
-        if (isEditPage) updatePhone(json, { onSuccess });
-        else addPhone(json, { onSuccess });
+        if (isEditPage) updatePhone(urlSinglePhone(id), json, { onSuccess });
+        else addPhone(urlPhone, json, { onSuccess });
       }
     }
   }
