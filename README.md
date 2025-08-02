@@ -1,5 +1,23 @@
-# SRIN - Frontend
+# Phone Catalogue (SRIN Test - Frontend)
 
-## React + TypeScript + Vite
+## Setup
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Clone this repo
+- Install packages needed
+```
+npm install
+```
+- Run the program
+
+```
+npm run dev
+```
+
+- FE should be running on http://localhost:5173/
+
+## Commands Available
+- Run program : `npm run dev`
+- Install packages : `npm install`
+- Run jest coverages (all) : `npm run cov`
+- Run jest coverages (some files/folders) : `npm run cov -- <file/folder>`
+- Run jest test : `npm run jest`
