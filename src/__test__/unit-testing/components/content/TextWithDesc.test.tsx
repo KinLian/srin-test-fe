@@ -4,7 +4,7 @@ import {
 } from "../../../../components/content";
 import { render, screen } from "@testing-library/react";
 
-describe("[Happy] Custom Navbar Component", () => {
+describe("Text with Desc", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
