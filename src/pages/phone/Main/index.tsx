@@ -1,17 +1,11 @@
-import {
-  Button,
-  Flex,
-  Table,
-  type TableColumnsType,
-  type TableColumnType,
-} from "antd";
+import { Table, type TableColumnsType, type TableColumnType } from "antd";
 import { MainLayout } from "../../../components/layout";
 import { urlPhone } from "../../../const/apiUrl";
 import { useGet } from "../../../hooks";
 import Title from "antd/es/typography/Title";
 import type { PhoneType } from "../../../types";
 import type { ColumnsType } from "antd/es/table/interface";
-import { useNavigate } from "react-router";
+import { TableActions } from "./modules";
 
 const columnTitles = [
   "Model",
@@ -40,7 +34,6 @@ const actionColumns: TableColumnsType = [
 ];
 
 function PhonePage() {
-  const navigate = useNavigate();
   const { data } = useGet<PhoneType[]>(urlPhone);
 
   const convertedDatas: ColumnsType = (data ?? [])?.map(
@@ -52,13 +45,7 @@ function PhonePage() {
   const convertedActions: ColumnsType = actionColumns.map(
     (it: TableColumnType) => ({
       ...it,
-      render: (value: PhoneType) => (
-        <Flex gap="0.5rem">
-          <Button variant="outlined" color="blue" onClick={() => navigate(`${value["id"]}`)}>Detail</Button>
-          <Button variant="outlined"color="blue" onClick={() => navigate(`${value["id"]}/edit`)}>Edit</Button>
-          <Button onClick={() => navigate(`${value["id"]}`)}>Delete</Button>
-        </Flex>
-      ),
+      render: (value: PhoneType) => <TableActions value={value} />,
     })
   );
 
@@ -67,10 +54,7 @@ function PhonePage() {
   return (
     <MainLayout gap="2rem">
       <Title>Phones</Title>
-      <Table
-        dataSource={convertedDatas}
-        columns={columnsWithSources}
-      />
+      <Table dataSource={convertedDatas} columns={columnsWithSources} />
     </MainLayout>
   );
 }
