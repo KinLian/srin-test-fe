@@ -46,8 +46,15 @@ function PhoneFormPage() {
   } = useSend(urlSinglePhone(id ?? ""), "PUT");
 
   //Functions
+  function validate(phone: Omit<PhoneType, "id">) {
+    const isInvalidForm = phone["model"] === "";
+    setIsInvalid(isInvalidForm);
+    return isInvalidForm;
+  }
+
   function sendData() {
     if (formRef && formRef.current) {
+      // Read Form
       const formData = new FormData(formRef.current);
       const json: { [key: string]: FormDataEntryValue } = {};
 
@@ -55,9 +62,8 @@ function PhoneFormPage() {
         json[key] = val;
       }
 
-      if (json["model"] === "") return setIsInvalid(true);
-      else {
-        setIsInvalid(false);
+      const isInvalidForm = validate(json);
+      if (!isInvalidForm) {
         if (isEditPage) updatePhone(json, { onSuccess });
         else addPhone(json, { onSuccess });
       }
