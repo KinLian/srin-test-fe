@@ -1,13 +1,14 @@
 import type { CSSProperties, ReactNode } from "react";
 import { colors } from "../../styles";
+import { Flex, type FlexProps } from "antd";
 
-interface MainLayoutProps {
+interface MainLayoutProps extends FlexProps {
   style?: CSSProperties;
   children: ReactNode;
 }
 
 const defaultStyle: CSSProperties = {
-  background: colors["blue-1"],
+  background: colors["gray-10"],
   padding: "2rem",
   minWidth: "calc(100vw - 4rem)",
   minHeight: "calc(100vh - 4rem)",
@@ -21,10 +22,17 @@ const innerStyle: CSSProperties = {
   minHeight: "calc(100vh - 8rem)",
 };
 
-function MainLayout({ children, style }: MainLayoutProps) {
+function MainLayout({
+  children,
+  style,
+  vertical = true,
+  ...props
+}: MainLayoutProps) {
   return (
     <div style={defaultStyle}>
-      <div style={{ ...style, ...innerStyle }}>{children}</div>
+      <Flex vertical={vertical} {...props} style={{ ...style, ...innerStyle }}>
+        {children}
+      </Flex>
     </div>
   );
 }

@@ -8,8 +8,9 @@ function useGet<T>(url: string) {
     fetch(`${process.env.REACT_APP_BE_URL_BASE_LOCAL}${url}`)
       .then((res) => res.json())
       .then((jsonData) => {
-        if (getData) setData(jsonData);
-      });
+        if (getData) setData(jsonData.data);
+      })
+      .catch((e) => console.warn(e));
 
     return () => {
       getData = false;

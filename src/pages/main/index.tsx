@@ -1,33 +1,32 @@
-import { Button } from "antd";
+import { Card } from "antd";
 import { MainLayout } from "../../components/layout";
 import { useNavigate } from "react-router";
+import Title from "antd/es/typography/Title";
 
 function HomePage() {
   const navigate = useNavigate();
 
   return (
     <MainLayout
+      justify="center"
       style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
         textAlign: "center",
         alignItems: "center",
       }}
     >
       <div>
-        <h1>SRIN Take Home Test</h1>
-        <h2>Electronics Catalogue</h2>
+        <Title>SRIN Take Home Test</Title>
+        <Title level={3}>Electronics Catalogue</Title>
       </div>
       <div style={{ marginTop: "4rem" }}>
-        <Button
-          variant="filled"
-          color="blue"
-          style={{ fontSize: "2rem", padding: "4rem", width: "fit-content" }}
+        <Card
+          hoverable
+          color="default"
+          style={{ fontSize: "2rem", paddingInline: "4rem", paddingBlock: "2rem", width: "fit-content" }}
           onClick={() => navigate("/phone")}
         >
           Phones
-        </Button>
+        </Card>
       </div>
     </MainLayout>
   );
