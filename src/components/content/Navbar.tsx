@@ -28,7 +28,7 @@ function Navbar() {
         data-testid="phone"
         variant="link"
         style={{ color: "white", background: "transparent", border: "0" }}
-        onClick={() => navigate("phone")}
+        onClick={() => navigate("/phone")}
       >
         Phones
       </Button>

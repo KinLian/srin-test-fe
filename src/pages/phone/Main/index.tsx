@@ -64,7 +64,7 @@ function PhonePage() {
       isLoading={Boolean(!data)}
     >
       <Flex gap="2rem" justify="space-between" align="center">
-        <Title>Phones</Title>
+        <Title style={{fontWeight: "700"}}>Phones</Title>
         <Button
           data-testid="add"
           size="large"

@@ -38,7 +38,7 @@ describe("Navbar", () => {
     renderComponent();
     const buttonTitleWithUrls = [
       ["home", "/"],
-      ["phone", "phone"],
+      ["phone", "/phone"],
     ];
 
     buttonTitleWithUrls.forEach((it, index) => {
