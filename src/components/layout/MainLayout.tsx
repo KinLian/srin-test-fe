@@ -15,12 +15,12 @@ const defaultStyle: CSSProperties = {
   paddingBottom: "2rem",
   paddingTop: "0rem",
   boxSizing: "border-box",
-  width: "100vw",
+  width: "100%",
   minHeight: "calc(100vh - 2rem)",
 };
 
 const innerStyle: CSSProperties = {
-  background: colors['gray-3'],
+  background: colors['gray-2'],
   borderRadius: "0.5rem",
   padding: "2rem",
   boxSizing: "border-box",

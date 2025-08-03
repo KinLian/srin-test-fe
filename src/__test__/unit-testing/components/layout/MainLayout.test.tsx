@@ -4,6 +4,11 @@ import {
   type MainLayoutProps,
 } from "../../../../components/layout";
 
+jest.mock("../../../../components/content/Navbar", () => ({
+  __esModule: true,
+  default: () => <p>Navbar</p>,
+}));
+
 describe("Main Layout", () => {
   afterEach(() => {
     jest.clearAllMocks();

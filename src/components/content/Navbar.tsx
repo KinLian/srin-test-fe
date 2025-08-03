@@ -1,7 +1,10 @@
 import { Button, Flex } from "antd";
 import { colors } from "../../styles";
+import { useNavigate } from "react-router";
 
 function Navbar() {
+  const navigate = useNavigate();
+
   return (
     <Flex
       gap="1rem"
@@ -16,16 +19,16 @@ function Navbar() {
       <Button
         data-testid="home"
         variant="link"
-        href="/"
         style={{ color: "white", background: "transparent", border: "0" }}
+        onClick={() => navigate("/")}
       >
         Home
       </Button>
       <Button
         data-testid="phone"
         variant="link"
-        href="/phone"
         style={{ color: "white", background: "transparent", border: "0" }}
+        onClick={() => navigate("phone")}
       >
         Phones
       </Button>

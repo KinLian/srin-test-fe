@@ -4,8 +4,16 @@ import { PhonePage } from "../../../../../pages/phone";
 import type { TableProps } from "antd";
 import type { AnyObject } from "antd/es/_util/type";
 import type { PhoneType } from "../../../../../types";
+import { useNavigate } from "react-router";
+import { act } from "react";
 
 // -------------------------- Mocks ------------------------------------
+const useNavigateMocking = useNavigate as jest.Mock;
+jest.mock("react-router", () => ({
+  ...jest.requireActual("react-router"),
+  useNavigate: jest.fn(),
+}));
+
 const useGetMocking = useGet as jest.Mock;
 jest.mock("../../../../../hooks", () => ({
   useGet: jest.fn(),
@@ -39,6 +47,9 @@ jest.mock("../../../../../pages/phone/Main/modules/TableActions", () => ({
   default: () => <p>Actions</p>,
 }));
 
+// -------------------------- Variables --------------------------------
+const mockUseNavigate = jest.fn();
+
 // --------------------------- Datas ---------------------------------
 const USE_GET_RESPONSE = {
   data: [{ id: "ID 0", model: "MODEL 0", os: "OS 0", price: "PRICE 0" }],
@@ -51,6 +62,7 @@ describe("Phone Main", () => {
 
   async function renderComponent(val: { data: PhoneType[] | null }) {
     useGetMocking.mockReturnValue(val);
+    useNavigateMocking.mockReturnValue(mockUseNavigate);
 
     render(<PhonePage />);
   }
@@ -88,5 +100,15 @@ describe("Phone Main", () => {
 
     const spinner = screen.getByTestId("spinner");
     expect(spinner).toBeVisible();
+  });
+
+  it("should find all of the buttons", async () => {
+    await renderComponent(USE_GET_RESPONSE);
+
+    const button = screen.getByTestId("add");
+    expect(button).toBeVisible();
+    act(() => button.click())
+    expect(mockUseNavigate).toHaveBeenCalledWith('add');
+    expect(mockUseNavigate).toHaveBeenCalledTimes(1);
   });
 });

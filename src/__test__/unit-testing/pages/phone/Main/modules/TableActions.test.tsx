@@ -44,7 +44,6 @@ describe("Table Actions", () => {
     renderComponent({ value });
 
     const buttonTitlesAndUrls = ["Detail", "Edit", "Delete"];
-
     buttonTitlesAndUrls.forEach((title, index) => {
       const button = screen.getByText(title);
       expect(button).toBeVisible();

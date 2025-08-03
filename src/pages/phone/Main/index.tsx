@@ -1,4 +1,6 @@
 import {
+  Button,
+  Flex,
   Table,
   Typography,
   type TableColumnsType,
@@ -10,6 +12,7 @@ import { useGet } from "../../../hooks";
 import type { PhoneType } from "../../../types";
 import type { ColumnsType } from "antd/es/table/interface";
 import { TableActions } from "./modules";
+import { useNavigate } from "react-router";
 const { Title } = Typography;
 
 const columnTitles = ["Model", "Price", "OS"];
@@ -18,6 +21,10 @@ const columns: TableColumnsType = columnTitles.map((it: string) => ({
   title: it,
   dataIndex: it.toLowerCase(),
   key: it.toLowerCase(),
+  filterMode: "tree",
+  filterSearch: true,
+  onFilter: (value, record) => record.name.startsWith(value as string),
+  width: "30%",
 }));
 const actionColumns: TableColumnsType = [
   {
@@ -27,6 +34,7 @@ const actionColumns: TableColumnsType = [
 ];
 
 function PhonePage() {
+  const navigate = useNavigate();
   const { data } = useGet<PhoneType[]>(urlPhone);
 
   const convertedDatas: ColumnsType = (data ?? [])?.map(
@@ -55,11 +63,30 @@ function PhonePage() {
       gap="2rem"
       isLoading={Boolean(!data)}
     >
-      <Title>Phones</Title>
+      <Flex gap="2rem" justify="space-between" align="center">
+        <Title>Phones</Title>
+        <Button
+          data-testid="add"
+          size="large"
+          color="blue"
+          variant="outlined"
+          onClick={() => navigate("add")}
+        >
+          Add More
+        </Button>
+      </Flex>
       <Table
         dataSource={convertedDatas}
         columns={columnsWithSources}
-        style={{ background: "white", borderRadius: "0.5rem", opacity: "0.95" }}
+        style={{
+          overflow: "hidden",
+          background: "white",
+          borderRadius: "0.5rem",
+          opacity: "0.95",
+          margin: "0",
+
+          padding: "rem",
+        }}
       />
     </MainLayout>
   );

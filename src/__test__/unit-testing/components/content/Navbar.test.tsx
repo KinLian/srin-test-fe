@@ -1,5 +1,17 @@
+import { useNavigate } from "react-router";
 import { Navbar } from "../../../../components/content";
 import { render, screen } from "@testing-library/react";
+import { act } from "react";
+
+// -------------------------- Mocks ------------------------------------
+const useNavigateMocking = useNavigate as jest.Mock;
+jest.mock("react-router", () => ({
+  ...jest.requireActual("react-router"),
+  useNavigate: jest.fn(),
+}));
+
+// -------------------------- Variables --------------------------------
+const mockUseNavigate = jest.fn();
 
 describe("Navbar", () => {
   afterEach(() => {
@@ -7,6 +19,8 @@ describe("Navbar", () => {
   });
 
   function renderComponent() {
+    useNavigateMocking.mockReturnValue(mockUseNavigate);
+
     render(<Navbar />);
   }
 
@@ -24,14 +38,15 @@ describe("Navbar", () => {
     renderComponent();
     const buttonTitleWithUrls = [
       ["home", "/"],
-      ["phone", "/phone"],
+      ["phone", "phone"],
     ];
 
-    buttonTitleWithUrls.forEach((it) => {
+    buttonTitleWithUrls.forEach((it, index) => {
       const button = screen.getByTestId(it[0]);
       expect(button).toBeVisible();
-      expect(button).toHaveRole("link");
-      expect(button).toHaveAttribute("href", it[1]);
+      act(() => button.click());
+      expect(mockUseNavigate).toHaveBeenCalledTimes(index + 1);
+      expect(mockUseNavigate).toHaveBeenCalledWith(it[1]);
     });
   });
 });
