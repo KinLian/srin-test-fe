@@ -9,10 +9,14 @@ jest.mock("react-router", () => ({
   useNavigate: jest.fn(),
 }));
 
+jest.mock("../../../../components/content/Navbar", () => ({
+  __esModule: true,
+  default: () => <p>Navbar</p>,
+}));
 // -------------------------- Variables --------------------------------
 const mockUseNavigate = jest.fn();
 
-describe("HomePage", () => {
+describe("Home Page", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -31,6 +35,10 @@ describe("HomePage", () => {
 
     expect(titleText).toBeVisible();
     expect(subtitleText).toBeVisible();
+  });
+
+  it("should show card & clickable", async () => {
+    renderComponent();
 
     const cardTitleAndUrls = [["Phones", "/phone"]];
     cardTitleAndUrls.forEach((it) => {

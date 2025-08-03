@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import { colors } from "../../styles";
 import { Flex, Spin, type FlexProps } from "antd";
+import { Navbar } from "../content";
 
 export interface MainLayoutProps extends FlexProps {
   style?: Omit<CSSProperties, "padding">;
@@ -10,19 +11,20 @@ export interface MainLayoutProps extends FlexProps {
 
 const defaultStyle: CSSProperties = {
   background: colors["gray-10"],
-  padding: "2rem",
+  paddingInline: "2rem",
+  paddingBottom: "2rem",
+  paddingTop: "0rem",
   boxSizing: "border-box",
-  maxWidth: "100vw",
-  minHeight: "98vh",
+  width: "100vw",
+  minHeight: "calc(100vh - 2rem)",
 };
 
 const innerStyle: CSSProperties = {
-  background: "white",
+  background: colors['gray-3'],
   borderRadius: "0.5rem",
   padding: "2rem",
   boxSizing: "border-box",
-  width: "calc(100vw - 5rem)",
-  minHeight: "calc(100vh - 5rem)",
+  minHeight: "calc(100vh - 7rem)",
 };
 
 function MainLayout({
@@ -33,7 +35,8 @@ function MainLayout({
   ...props
 }: MainLayoutProps) {
   return (
-    <Flex style={defaultStyle}>
+    <Flex vertical style={defaultStyle}>
+      <Navbar />
       <Flex vertical={vertical} {...props} style={{ ...innerStyle, ...style }}>
         {!isLoading ? (
           children

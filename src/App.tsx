@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router";
+import "./App.css";
 
 import HomePage from "./pages/main";
 import { PhonePage, PhoneDetailPage, PhoneFormPage } from "./pages/phone";

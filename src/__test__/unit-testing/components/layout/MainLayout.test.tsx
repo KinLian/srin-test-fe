@@ -36,4 +36,18 @@ describe("Main Layout", () => {
     expect(spinner).toBeVisible();
     expect(childrenText).not.toBeInTheDocument();
   });
+
+  it("should render component with optional values (unloaded)", async () => {
+    renderComponent({
+      children: "Main Layout",
+      isLoading: false,
+      vertical: true,
+    });
+
+    const spinner = screen.queryByTestId("spinner");
+    const childrenText = screen.getByText("Main Layout");
+
+    expect(spinner).not.toBeInTheDocument();
+    expect(childrenText).toBeVisible();
+  });
 });
