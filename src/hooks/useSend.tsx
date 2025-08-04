@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 type Method = "POST" | "PUT" | "DELETE";
-export interface RequestProps extends Omit<Partial<Request>, "body" | "method"> {
+export interface RequestProps
+  extends Omit<Partial<Request>, "body" | "method"> {
   onSuccess: (data: unknown) => void;
   onFailed?: (data: unknown) => void;
 }
@@ -35,7 +36,12 @@ function useSend(method: Method) {
       },
       ...props,
     })
-      .then((res) => res.json())
+      .then(async (res) => {
+        const resJson = await res.json();
+        if (res.status >= 400 && res.status <= 600)
+          throw new Error(resJson.detail);
+        return resJson;
+      })
       .then((data) => {
         setConditions((prev) => ({
           ...prev,
@@ -46,6 +52,8 @@ function useSend(method: Method) {
         onSuccess(data);
       })
       .catch((e) => {
+        console.error(e);
+        alert(e);
         setConditions((prev) => ({
           ...prev,
           isLoading: false,

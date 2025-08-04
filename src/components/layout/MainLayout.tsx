@@ -2,7 +2,6 @@ import type { CSSProperties, ReactNode } from "react";
 import { colors } from "../../styles";
 import { Flex, Spin, type FlexProps } from "antd";
 import { Navbar } from "../content";
-
 export interface MainLayoutProps extends FlexProps {
   style?: Omit<CSSProperties, "padding">;
   isLoading?: boolean;
@@ -20,7 +19,7 @@ const defaultStyle: CSSProperties = {
 };
 
 const innerStyle: CSSProperties = {
-  background: colors['gray-2'],
+  background: colors["gray-2"],
   borderRadius: "0.5rem",
   padding: "2rem",
   boxSizing: "border-box",

@@ -9,13 +9,15 @@ const mockFetch = jest.fn();
 global.fetch = mockFetch;
 
 // ---------------------------- Datas -----------------------------------
-const DUMMY_RESPONSE = { data: { id: "ID" } };
+const DUMMY_RESPONSE_SUCCESS = { data: { id: "ID" } };
+const DUMMY_RESPONSE_ERROR = { detail: "ERROR" };
 const RESULT_FETCH_SUCCESS = {
   ok: true,
-  json: () => Promise.resolve(DUMMY_RESPONSE),
+  json: () => Promise.resolve(DUMMY_RESPONSE_SUCCESS),
 };
 const RESULT_FETCH_FAILED = {
   ok: false,
+  json: () => Promise.resolve(DUMMY_RESPONSE_ERROR),
 };
 
 describe("useGet", () => {
