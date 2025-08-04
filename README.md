@@ -32,7 +32,7 @@ npm run dev
 - Install packages : `npm install`
 - Run jest coverages (all) : `npm run cov`
 - Run jest coverages (some files/folders) : `npm run cov -- <file/folder>`
-- Run jest test : `npm run jest`
+- Run jest test : `npm run test`
 
 ## App Directory
 - public ------------------------- Public assets
